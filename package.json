@@ -1,0 +1,21 @@
+{
+  "name": "express-file-server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "test",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "security",
+    "photos",
+    "server"
+  ],
+  "author": "Ian",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "fs-extra": "8.1.0"
+  }
+}

@@ -5,6 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="/web.js"></script>
+    <style>
+        .lds-dual-ring {
+            visibility: hidden;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+        }
+        .lds-dual-ring:after {
+            content: " ";
+            display: block;
+            width: 64px;
+            height: 64px;
+            margin: 8px;
+            border-radius: 50%;
+            border: 6px solid #000;
+            border-color: #000 transparent #000 transparent;
+            animation: lds-dual-ring 1.2s linear infinite;
+        }
+        @keyframes lds-dual-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Cottage custodian</h1>
@@ -12,5 +39,7 @@
     <h4 style="text-align: center;">Latest image ------- Timestamp: <span id="latest-img-timestamp"></span></h4>
     <img id="latest-img" src="" style="width: calc(100vw - 50px); margin-left: 17px; min-width: 250px; max-width: 1000px;"/>
     <br>
+    <div><button onclick="grabnewshot()">Take a new picture</button></div>
+    <div class="lds-dual-ring"></div>
 </body>
 </html>

@@ -26,6 +26,8 @@ if result:
     # saving image in local storage
 
     cv2.imwrite('{0}.png'.format(dt_string), image)
+
+    print('{"status": "success", "message": "Image written to file", "fileName": "' + format(dt_string) + '.png"}')
   
     # If keyboard interrupt occurs, destroy image 
     # window
@@ -34,4 +36,4 @@ if result:
   
 # If captured image is corrupted, moving to else part
 else:
-    print("No image detected. Please! try again")
+    print('{"status": "failure", "message": "Camera read result null"}')
