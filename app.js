@@ -7,6 +7,8 @@ var app = express();
 app.use(express.static(path.join(__dirname, 'file_store')));
 
 let filelist = [];
+let numCameras = 0; //Count, not port numbers. [ports start at 0]
+
 fs.readdir(__dirname, (err, files) => {
     if (err) throw err;
   
@@ -17,7 +19,33 @@ fs.readdir(__dirname, (err, files) => {
             //console.log(file);
         }
     }
-  });
+});
+
+const cameraSetup = () => {
+    exec("cameraSetup.py", (error, stdout, stderr) => {
+        //console.log(`cSetp error: ${error}  stdout: ${stdout}   stderr: ${stderr}`);
+        if(!error)
+        {
+            let cameraSetupResponse = undefined;
+            try {
+                cameraSetupResponse = JSON.parse(stdout);
+            } catch (err) {
+                console.log(err);
+            }
+            if(cameraSetupResponse.status == 'success')
+            {
+                console.log(`Camera setup complete. detected # cameras: ${cameraSetupResponse.cameras}`);
+                numCameras = cameraSetupResponse.cameras;
+            }
+            
+        }
+        else {
+            console.log(error);
+        }
+    });
+}
+
+cameraSetup();
 
 app.get('/',function(req,res){
     res.sendFile(__dirname+"/index.html")
