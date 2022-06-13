@@ -83,17 +83,21 @@ app.get('/takeAPic', function(req, res) {
                     file: cameraInterfaceResponse.fileName
                 });
             }
-            
         }
         else {
             console.log(error)
         }
-
-
     });
 });
 
-app.get('/imgs/*', function(req, res) {
+app.get('/runSetup', (req, res) => {
+    cameraSetup();//TODO: exec is async, make this actually work
+    res.send({
+        count: numCameras
+    });
+});
+
+app.get('/imgs/*', (req, res) => {
     console.log(filelist);
     console.log(req.url.replace("/imgs/", ""));
     console.log(filelist.includes(req.url.replace("/imgs/", "")));

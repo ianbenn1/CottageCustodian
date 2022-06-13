@@ -52,9 +52,15 @@
     <h1>Cottage custodian</h1>
     <hr />
     <h4 style="text-align: center;">Latest image ------- Timestamp: <span id="latest-img-timestamp"></span></h4>
-    <img id="latest-img" src=""/>
+    <div>
+        <select id="cameraSelector">
+        </select>
+        <button onclick="changeView(event)" data-currentview="single" id="view-switch">View all</button>
+    </div>
+    <div id="multicam-view"></div>
+    <img id="latest-img" src=""/><!--TODO: Format img 'canvas' so multiple cameras can fit-->
     <br>
-    <div><button onclick="grabnewshot()">Take a new picture</button></div>
+    <div><button onclick="grabnewshot()">Take a new picture</button><button onclick="runSetup()">Detect Cameras</button></div><!--TODO: specity which camera to take a picture on-->
     <div class="lds-dual-ring"></div>
 </body>
 </html>
