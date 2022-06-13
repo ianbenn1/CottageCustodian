@@ -43,25 +43,26 @@ const cameraSetup = () => {
             console.log(error);
         }
     });
-}
+}// TODO: Make api call to get revised number of cameras attached [hotplug support]
 
+//Call camera setup on startup
 cameraSetup();
 
-app.get('/',function(req,res){
+app.get('/', (req,res) => {
     res.sendFile(__dirname+"/index.html")
 });
 
-app.get('/web.js',function(req,res){
+app.get('/web.js', (req,res) => {
     res.sendFile(__dirname+"/web.js")
 });
 
-app.get('/imgs', function(req, res) {
+app.get('/imgs', (req, res) => {
     res.send({
         filelist
     });
 });
 
-app.get('/takeAPic', function(req, res) {
+app.get('/takeAPic', (req, res) => {
 
     console.log("Ping");
     exec("cameraInterface.py", (error, stdout, stderr) => {
@@ -112,7 +113,7 @@ app.get('/imgs/*', (req, res) => {
 });
 
 
-  var server = app.listen(8035, function() {
+  var server = app.listen(8035, () => {
     console.log('Listening on port %d', server.address().port);
 
 });
